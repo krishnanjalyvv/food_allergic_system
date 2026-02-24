@@ -1,0 +1,16 @@
+{
+    "python.defaultInterpreterPath": "C:\\Program Files\\Python314\\python.exe",
+    "python.analysis.extraPaths": [
+        "c:\\Users\\krish\\OneDrive\\Desktop\\miniproject\\SafeBite\\server",
+        "C:\\Program Files\\Python314\\Lib\\site-packages"
+    ],
+    "python.autoComplete.extraPaths": [
+        "c:\\Users\\krish\\OneDrive\\Desktop\\miniproject\\SafeBite\\server",
+        "C:\\Program Files\\Python314\\Lib\\site-packages"
+    ],
+    "python.analysis.typeCheckingMode": "off",
+    "python.analysis.diagnosticSeverityOverrides": {
+        "reportMissingImports": "none",
+        "reportMissingModuleSource": "none"
+    }
+}
