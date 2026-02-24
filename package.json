@@ -1,1 +1,25 @@
-{"type": "commonjs"}
+{
+    "name": "safebite",
+    "version": "0.1.0",
+    "private": true,
+    "scripts": {
+        "dev": "next dev -H 127.0.0.1",
+        "dev:all": "concurrently \"python backend/app.py\" \"next dev -H 127.0.0.1\"",
+        "build": "next build",
+        "start": "next start",
+        "lint": "next lint",
+        "server": "python backend/app.py"
+    },
+    "dependencies": {
+        "autoprefixer": "10.4.14",
+        "lucide-react": "^0.263.1",
+        "next": "13.4.19",
+        "postcss": "8.4.27",
+        "react": "18.2.0",
+        "react-dom": "18.2.0",
+        "tailwindcss": "3.3.3"
+    },
+    "devDependencies": {
+        "concurrently": "^9.2.1"
+    }
+}

@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { ArrowLeft, Upload, User, Info, AlertTriangle } from "lucide-react";
 import Link from "next/link";
 
@@ -27,43 +27,39 @@ const MedicalProfilePage = () => {
     );
   };
 
+  useEffect(() => {
+    // Load profile from local storage on mount
+    const savedProfile = localStorage.getItem("safeBiteProfile");
+    if (savedProfile) {
+      const data = JSON.parse(savedProfile);
+      setAllergies(data.allergies || []);
+      setDietPreference(data.dietPreference || "");
+      setOtherAllergy(data.otherAllergy || "");
+      setAdditionalInfo(data.additionalInfo || "");
+      setShareData(data.shareData || false);
+    }
+  }, []);
+
   const handleSubmit = async (event) => {
     event.preventDefault();
     setIsSubmitting(true);
 
-    const formData = new FormData();
-    if (medicalRecords) {
-      formData.append("medicalRecords", medicalRecords);
-    }
-    formData.append("allergies", JSON.stringify(allergies));
-    formData.append("dietPreference", dietPreference);
-    formData.append("otherAllergy", otherAllergy);
-    formData.append("additionalInfo", additionalInfo);
-    formData.append("shareData", shareData);
-    // print the form data to the console for debugging in a single statement
-    const details = Object.fromEntries(formData.entries());
+    const profileData = {
+      allergies,
+      dietPreference,
+      otherAllergy,
+      additionalInfo,
+      shareData
+    };
 
-    try {
-      const response = await fetch("http://localhost:5000/profile", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
+    // Save to Local Storage
+    localStorage.setItem("safeBiteProfile", JSON.stringify(profileData));
 
-        body: JSON.stringify({ data: details }),
-      });
-
-      if (!response.ok) {
-        throw new Error("Failed to submit medical profile");
-      }
-
-      const result = await response.json();
-      console.log("Submission successful:", result);
-      // Here you can add logic to show a success message or redirect the user
-    } catch (error) {
-      console.error("Error submitting medical profile:", error);
-      // Here you can add logic to show an error message to the user
-    } finally {
+    // Simulate a brief delay to show processing state
+    setTimeout(() => {
       setIsSubmitting(false);
-    }
+      alert("✅ Profile Saved Successfully! Your preferences will now be used for AI recommendations.");
+    }, 500);
   };
 
   return (

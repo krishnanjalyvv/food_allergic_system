@@ -22,7 +22,17 @@ export default function Home() {
   const [isCameraActive, setIsCameraActive] = useState(false);
   const videoRef = useRef(null);
   const canvasRef = useRef(null);
+  const [userProfile, setUserProfile] = useState(null);
   const chatRef = useRef(null);
+  const [isLoading, setIsLoading] = useState(false);
+
+  useEffect(() => {
+    // Load user profile for personalized AI context
+    const savedProfile = localStorage.getItem("safeBiteProfile");
+    if (savedProfile) {
+      setUserProfile(JSON.parse(savedProfile));
+    }
+  }, []);
 
   useEffect(() => {
     if (chatRef.current) {
@@ -72,25 +82,44 @@ export default function Home() {
         stopCamera();
 
         try {
-          const response = await fetch("http://localhost:5000/predict", {
+          setIsLoading(true);
+
+          // Create a timeout controller
+          const controller = new AbortController();
+          const timeoutId = setTimeout(() => controller.abort(), 60000); // 60s timeout
+
+          const response = await fetch("http://127.0.0.1:5000/predict", {
             method: "POST",
             headers: {
               "Content-Type": "application/json",
             },
-            body: JSON.stringify({ image: imageDataUrl }),
+            body: JSON.stringify({
+              image: imageDataUrl,
+              userProfile: userProfile
+            }),
+            signal: controller.signal
           });
 
+          clearTimeout(timeoutId);
+
           if (!response.ok) {
-            throw new Error("Failed to upload image");
+            throw new Error(`Server Error: ${response.status}`);
           }
 
           const data = await response.json();
           setAiResponse(data.result);
+          if (data.food) setIdentifiedFood(data.food);
+          if (data.ingredients) setIngredients(data.ingredients);
+          if (data.allergens) setAllergens(data.allergens);
         } catch (error) {
-          console.error("Error uploading image:", error);
-          setAiResponse(
-            "Sorry, there was an error processing your image. Please try again."
-          );
+          console.error("Error identifying food:", error);
+          if (error.name === 'AbortError') {
+            setAiResponse("The AI is taking too long to respond. Please check your internet connection and try again.");
+          } else {
+            setAiResponse(`Could not reach the AI server. Please make sure the backend is running on port 5000. (${error.message})`);
+          }
+        } finally {
+          setIsLoading(false);
         }
       }
     }
@@ -112,12 +141,21 @@ export default function Home() {
       setUserQuestion("");
 
       try {
-        const response = await fetch("http://localhost:5000/talk", {
+        setIsLoading(true);
+        const response = await fetch("http://127.0.0.1:5000/talk", {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
           },
-          body: JSON.stringify({ question: userQuestion }),
+          body: JSON.stringify({
+            question: userQuestion,
+            context: {
+              food: identifiedFood,
+              ingredients: ingredients,
+              allergens: allergens,
+              userProfile: userProfile
+            }
+          }),
         });
 
         if (!response.ok) {
@@ -131,6 +169,8 @@ export default function Home() {
         setAiResponse(
           "I'm sorry, but there was an error processing your question. Please try again later."
         );
+      } finally {
+        setIsLoading(false);
       }
     }
   };
@@ -156,10 +196,10 @@ export default function Home() {
       </div>
 
       <div className='bg-gray-800 shadow-lg rounded-lg overflow-hidden'>
-        <div className='bg-blue-600 text-gray-100 p-4 rounded-t-lg'>
-          <h2 className='text-xl font-bold'>AI Food Identifier</h2>
-          <p className='text-blue-200'>
-            Capture a photo of your food to get started
+        <div className='bg-gradient-to-r from-emerald-600 to-teal-600 text-white p-6 rounded-t-lg'>
+          <h2 className='text-2xl font-bold'>AI Food Identifier</h2>
+          <p className='text-emerald-100'>
+            Capture a photo to detect allergens instantly
           </p>
         </div>
         <div className='space-y-4 p-4'>
@@ -192,21 +232,39 @@ export default function Home() {
           {capturedImage ? (
             <button
               onClick={handleRecapture}
-              className='w-full bg-blue-600 hover:bg-blue-700 text-gray-100 py-2 rounded-md flex items-center justify-center'>
-              <RefreshCw className='w-5 h-5 mr-2' />
-              Recapture
+              disabled={isLoading}
+              className={`w-full bg-emerald-600 hover:bg-emerald-700 text-white py-3 rounded-lg font-semibold shadow-md transition duration-300 flex items-center justify-center ${isLoading ? 'opacity-70 cursor-not-allowed' : ''}`}>
+              {isLoading ? (
+                <>
+                  <RefreshCw className='w-5 h-5 mr-2 animate-spin' />
+                  Analyzing Food...
+                </>
+              ) : (
+                <>
+                  <RefreshCw className='w-5 h-5 mr-2' />
+                  Scan Another Item
+                </>
+              )}
             </button>
           ) : (
             <>
               <button
                 onClick={isCameraActive ? captureImage : startCamera}
-                className='w-full bg-blue-600 hover:bg-blue-700 text-gray-100 py-2 rounded-md'>
-                {isCameraActive ? "Capture Food" : "Start Camera"}
+                disabled={isLoading}
+                className={`w-full bg-gradient-to-r from-emerald-500 to-teal-500 hover:from-emerald-600 hover:to-teal-600 text-white py-3 rounded-lg font-semibold shadow-md transition duration-300 ${isLoading ? 'opacity-70 cursor-not-allowed' : ''}`}>
+                {isLoading ? (
+                  <div className="flex items-center justify-center">
+                    <RefreshCw className="w-5 h-5 mr-2 animate-spin" />
+                    Analyzing Food...
+                  </div>
+                ) : (
+                  isCameraActive ? "Capture Food" : "Start Camera"
+                )}
               </button>
               {isCameraActive && (
                 <button
                   onClick={stopCamera}
-                  className='w-full bg-red-600 hover:bg-red-700 text-gray-100 py-2 rounded-md'>
+                  className='w-full mt-2 bg-red-500 hover:bg-red-600 text-white py-2 rounded-lg transition duration-300'>
                   Stop Camera
                 </button>
               )}
@@ -214,6 +272,14 @@ export default function Home() {
           )}
         </div>
       </div>
+
+      {isLoading && !identifiedFood && (
+        <div className='bg-gray-800 shadow-lg rounded-lg p-6 flex flex-col items-center justify-center space-y-4 animate-pulse'>
+          <RefreshCw className='w-12 h-12 text-blue-400 animate-spin' />
+          <p className='text-gray-400 font-medium'>Processing Image with AI...</p>
+          <p className='text-xs text-gray-500'>This provides personalized recommendations based on your profile.</p>
+        </div>
+      )}
 
       {identifiedFood && (
         <div className='bg-gray-800 shadow-lg rounded-lg overflow-hidden'>
@@ -251,15 +317,13 @@ export default function Home() {
             {messages.map((message) => (
               <div
                 key={message.id}
-                className={`flex ${
-                  message.sender === "user" ? "justify-end" : "justify-start"
-                }`}>
-                <div
-                  className={`max-w-[80%] rounded-lg p-2 ${
-                    message.sender === "user"
-                      ? "bg-blue-600 text-gray-100"
-                      : "bg-gray-700 text-gray-100"
+                className={`flex ${message.sender === "user" ? "justify-end" : "justify-start"
                   }`}>
+                <div
+                  className={`max-w-[80%] rounded-lg p-2 ${message.sender === "user"
+                    ? "bg-blue-600 text-gray-100"
+                    : "bg-gray-700 text-gray-100"
+                    }`}>
                   {message.text}
                 </div>
               </div>
@@ -275,10 +339,14 @@ export default function Home() {
             />
             <button
               onClick={handleAskQuestion}
-              className='bg-blue-600 hover:bg-blue-700 text-gray-100 px-4 py-2 rounded-md'>
-              <Send className='w-4 h-4' />
+              disabled={isLoading || !userQuestion.trim()}
+              className={`bg-blue-600 hover:bg-blue-700 text-gray-100 px-4 py-2 rounded-md ${isLoading ? 'opacity-50' : ''}`}>
+              {isLoading ? <RefreshCw className="w-4 h-4 animate-spin" /> : <Send className='w-4 h-4' />}
             </button>
           </div>
+          <p className="text-[10px] text-gray-500 mt-2 text-center italic">
+            Analysis (medical report and profile data) is used to provide personalized recommendations.
+          </p>
         </div>
       </div>
 
