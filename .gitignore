@@ -46,3 +46,6 @@ venv/
 *.pyc
 .vscode/
 .env
+# SQLite database
+server/users.db
+users.db

@@ -91,18 +91,29 @@ def login():
     req_data = request.get_json()
     email = req_data.get('email')
     password = req_data.get('password')
-    
-    # Connect to database and check user
-    conn = sqlite3.connect('users.db')
-    c = conn.cursor()
-    c.execute("SELECT * FROM users WHERE email=? AND password=?", (email, password))
-    user = c.fetchone()
-    conn.close()
 
-    if user:
-        return jsonify({"message": "Login successful", "token": "real_user_token_123"}), 200
-    else:
-        return jsonify({"message": "Incorrect email or password."}), 401
+    try:
+        with sqlite3.connect("users.db", timeout=30) as conn:
+            c = conn.cursor()
+            c.execute(
+                "SELECT * FROM users WHERE email=? AND password=?",
+                (email, password)
+            )
+            user = c.fetchone()
+
+        if user:
+            return jsonify({
+                "message": "Login successful",
+                "token": "real_user_token_123"
+            }), 200
+
+        return jsonify({
+            "message": "Incorrect email or password."
+        }), 401
+
+    except Exception as e:
+        print(e)
+        return jsonify({"message": str(e)}), 500
 
 @app.route('/upload_medical_report', methods=['POST'])
 def upload_medical_report():
@@ -138,16 +149,22 @@ def register():
     password = req_data.get('password')
 
     try:
-        conn = sqlite3.connect('users.db')
-        c = conn.cursor()
-        c.execute("INSERT INTO users (email, password) VALUES (?, ?)", (email, password))
-        conn.commit()
-        conn.close()
+        with sqlite3.connect("users.db", timeout=30) as conn:
+            c = conn.cursor()
+            c.execute(
+                "INSERT INTO users (email, password) VALUES (?, ?)",
+                (email, password)
+            )
+            conn.commit()
+
         return jsonify({"message": "Account created successfully"}), 201
+
     except sqlite3.IntegrityError:
-        # IntegrityError happens when the email already exists in the table (UNIQUE constraint)
         return jsonify({"message": "That email is already registered."}), 400
 
+    except Exception as e:
+        print(e)
+        return jsonify({"message": str(e)}), 500
 if __name__ == '__main__':
     port = int(os.environ.get("PORT", 10000))
     app.run(host="0.0.0.0", port=port, debug=False)
