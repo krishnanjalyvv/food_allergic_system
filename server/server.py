@@ -28,7 +28,6 @@ def init_db():
 init_db()
 
 @app.route('/predict', methods=['POST'])
-@app.route('/predict', methods=['POST'])
 def predict():
     req_json = request.get_json()
     data = req_json.get('image')
@@ -150,4 +149,5 @@ def register():
         return jsonify({"message": "That email is already registered."}), 400
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    port = int(os.environ.get("PORT", 10000))
+    app.run(host="0.0.0.0", port=port, debug=False)
