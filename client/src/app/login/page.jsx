@@ -36,7 +36,7 @@ export default function LoginPage() {
         // 5. Connecting to the Backend
         try {
             // NOTE: Make sure 'http://localhost:5000/login' matches your Flask backend URL
-            const response = await fetch("http://localhost:5000/login", {
+            const response = await fetch("https://food-allergic-system.onrender.com/login", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",

@@ -37,7 +37,7 @@ export default function RegisterPage() {
         setIsLoading(true);
 
         try {
-            const response = await fetch("http://localhost:5000/register", {
+            const response = await fetch("https://food-allergic-system.onrender.com/register", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",

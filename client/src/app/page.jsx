@@ -119,7 +119,7 @@ export default function Home() {
         stopCamera();
 
         try {
-          const response = await fetch("http://localhost:5000/predict", {
+          const response = await fetch("https://food-allergic-system.onrender.com/predict", {
             method: "POST",
             headers: {
               "Content-Type": "application/json",
@@ -165,7 +165,7 @@ export default function Home() {
       setUserQuestion("");
 
       try {
-        const response = await fetch("http://localhost:5000/talk", {
+        const response = await fetch("https://food-allergic-system.onrender.com/talk", {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
