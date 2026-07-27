@@ -1,0 +1,16 @@
+{
+    "name": "safebite-root",
+    "version": "1.0.0",
+    "description": "Root script to run frontend and backend concurrently",
+    "scripts": {
+        "start:backend": "cd server && python server.py",
+        "start:frontend": "cd client && npm run dev",
+        "dev:all": "concurrently --kill-others-on-fail \"npm run start:backend\" \"npm run start:frontend\"",
+        "install:client": "cd client && npm install",
+        "install:server": "cd server && pip install -r requirements.txt",
+        "setup": "npm run install:client && npm run install:server"
+    },
+    "devDependencies": {
+        "concurrently": "^8.2.2"
+    }
+}

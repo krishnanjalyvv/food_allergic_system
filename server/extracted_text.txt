@@ -1,0 +1,31 @@
+Page 1
+Evergreen W ellness   
+Hospital  
+123 Harmony Street, CA 90210  
+MEDICAL REPORT - FOOD ALLERGY  
+Visit Info : 
+Doctor:  Dr. Olivia Greene  
+Specialization:  Allergy & Immunology  
+Visit Date:  21-03-2026 
+Patient Inf o: 
+Name:  Manu k  
+Age: 26 
+Gender:  Male  
+Phone:  9746642318  
+Food Allergies List  
+ 
+Category  Item s 
+Peanuts  Peanuts  
+Tree Nuts  Almonds, Cashews, Walnuts  
+Shellfish  Shrimp, Crab, Lobster  
+Fish Tuna, Salmon  
+Other  Milk, Eggs, Wheat, Soy  
+Assessmen t : Patient shows allergic reactions such as skin rashes, swelling, and 
+breathing difficulty upon exposure to listed allergens  
+Diagnosis : Confirmed Food Allergy (IgE -mediated). Risk of anaphylaxis present.   
+Prescription : Antihistamines as required - Carry Epinephrine Auto -Injector 
+(EpiPen) - Strict allergen avoidance  
+Doctor Signat ure:                                                                            
+                                                                            
+
+

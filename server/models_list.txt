@@ -1,0 +1,137 @@
+google-generativeai version: 0.8.6
+Listing models:
+Model: models/gemini-2.5-flash
+  Supported: YES (generateContent)
+--------------------
+Model: models/gemini-2.5-pro
+  Supported: YES (generateContent)
+--------------------
+Model: models/gemini-2.0-flash
+  Supported: YES (generateContent)
+--------------------
+Model: models/gemini-2.0-flash-001
+  Supported: YES (generateContent)
+--------------------
+Model: models/gemini-2.0-flash-exp-image-generation
+  Supported: YES (generateContent)
+--------------------
+Model: models/gemini-2.0-flash-lite-001
+  Supported: YES (generateContent)
+--------------------
+Model: models/gemini-2.0-flash-lite
+  Supported: YES (generateContent)
+--------------------
+Model: models/gemini-exp-1206
+  Supported: YES (generateContent)
+--------------------
+Model: models/gemini-2.5-flash-preview-tts
+  Supported: YES (generateContent)
+--------------------
+Model: models/gemini-2.5-pro-preview-tts
+  Supported: YES (generateContent)
+--------------------
+Model: models/gemma-3-1b-it
+  Supported: YES (generateContent)
+--------------------
+Model: models/gemma-3-4b-it
+  Supported: YES (generateContent)
+--------------------
+Model: models/gemma-3-12b-it
+  Supported: YES (generateContent)
+--------------------
+Model: models/gemma-3-27b-it
+  Supported: YES (generateContent)
+--------------------
+Model: models/gemma-3n-e4b-it
+  Supported: YES (generateContent)
+--------------------
+Model: models/gemma-3n-e2b-it
+  Supported: YES (generateContent)
+--------------------
+Model: models/gemini-flash-latest
+  Supported: YES (generateContent)
+--------------------
+Model: models/gemini-flash-lite-latest
+  Supported: YES (generateContent)
+--------------------
+Model: models/gemini-pro-latest
+  Supported: YES (generateContent)
+--------------------
+Model: models/gemini-2.5-flash-lite
+  Supported: YES (generateContent)
+--------------------
+Model: models/gemini-2.5-flash-image
+  Supported: YES (generateContent)
+--------------------
+Model: models/gemini-2.5-flash-preview-09-2025
+  Supported: YES (generateContent)
+--------------------
+Model: models/gemini-2.5-flash-lite-preview-09-2025
+  Supported: YES (generateContent)
+--------------------
+Model: models/gemini-3-pro-preview
+  Supported: YES (generateContent)
+--------------------
+Model: models/gemini-3-flash-preview
+  Supported: YES (generateContent)
+--------------------
+Model: models/gemini-3-pro-image-preview
+  Supported: YES (generateContent)
+--------------------
+Model: models/nano-banana-pro-preview
+  Supported: YES (generateContent)
+--------------------
+Model: models/gemini-robotics-er-1.5-preview
+  Supported: YES (generateContent)
+--------------------
+Model: models/gemini-2.5-computer-use-preview-10-2025
+  Supported: YES (generateContent)
+--------------------
+Model: models/deep-research-pro-preview-12-2025
+  Supported: YES (generateContent)
+--------------------
+Model: models/gemini-embedding-001
+  Supported: NO (methods: ['embedContent', 'countTextTokens', 'countTokens', 'asyncBatchEmbedContent'])
+--------------------
+Model: models/aqa
+  Supported: NO (methods: ['generateAnswer'])
+--------------------
+Model: models/imagen-4.0-generate-preview-06-06
+  Supported: NO (methods: ['predict'])
+--------------------
+Model: models/imagen-4.0-ultra-generate-preview-06-06
+  Supported: NO (methods: ['predict'])
+--------------------
+Model: models/imagen-4.0-generate-001
+  Supported: NO (methods: ['predict'])
+--------------------
+Model: models/imagen-4.0-ultra-generate-001
+  Supported: NO (methods: ['predict'])
+--------------------
+Model: models/imagen-4.0-fast-generate-001
+  Supported: NO (methods: ['predict'])
+--------------------
+Model: models/veo-2.0-generate-001
+  Supported: NO (methods: ['predictLongRunning'])
+--------------------
+Model: models/veo-3.0-generate-001
+  Supported: NO (methods: ['predictLongRunning'])
+--------------------
+Model: models/veo-3.0-fast-generate-001
+  Supported: NO (methods: ['predictLongRunning'])
+--------------------
+Model: models/veo-3.1-generate-preview
+  Supported: NO (methods: ['predictLongRunning'])
+--------------------
+Model: models/veo-3.1-fast-generate-preview
+  Supported: NO (methods: ['predictLongRunning'])
+--------------------
+Model: models/gemini-2.5-flash-native-audio-latest
+  Supported: NO (methods: ['countTokens', 'bidiGenerateContent'])
+--------------------
+Model: models/gemini-2.5-flash-native-audio-preview-09-2025
+  Supported: NO (methods: ['countTokens', 'bidiGenerateContent'])
+--------------------
+Model: models/gemini-2.5-flash-native-audio-preview-12-2025
+  Supported: NO (methods: ['countTokens', 'bidiGenerateContent'])
+--------------------
