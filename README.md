@@ -1,4 +1,4 @@
-<div align="center">
+<img width="1920" height="1080" alt="Screenshot (115)" src="https://github.com/user-attachments/assets/f9682918-a4af-49d9-ade8-1b6144b6774e" /><div align="center">
 
 # 🍽️ SafeBite
 ### AI Powered Food Allergic System
@@ -29,7 +29,7 @@ The system also allows users to maintain a medical profile, upload medical repor
 # ✨ Features
 
 - 🤖 AI-powered food image analysis using Google Gemini
-- 📷 Upload or capture food images
+- 📷 capture food images
 - 🥗 Ingredient detection
 - ⚠️ Hidden allergen identification
 - 👤 User registration and login
@@ -38,6 +38,8 @@ The system also allows users to maintain a medical profile, upload medical repor
 - 💬 AI chatbot for food safety queries
 - ☁️ Fully deployed frontend and backend
 - 📱 Responsive user interface
+- 🥗 Dietary Preferences
+
 
 ---
 
@@ -221,43 +223,46 @@ GEMINI_API_KEY=YOUR_API_KEY
 
 # 📸 Screenshots
 
-> Add screenshots after uploading them to your repository.
-
-## Home Page
-
-```
-https://1drv.ms/i/c/dd3143836538529d/IQCpIYdAfZyMRozVVuPMMJZdARcUr4AWi1LAuWg-vVQxbcs?e=oywqHS
-```
 
 ## Login Page
 
 ```
-https://1drv.ms/i/c/dd3143836538529d/IQBdpYvLTMulQ7UmVzzEdfa1ATao26X1Id7JxK_YJ6_KEbo?e=cdWiNw
+```
+<img width="1920" height="1080" alt="Screenshot (104)" src="https://github.com/user-attachments/assets/1f0a45bf-92c0-4df4-bf39-91383631a085" />
+
 ```
 
 ## Registration Page
 
 ```
-https://1drv.ms/i/c/dd3143836538529d/IQCyoL0vINx6QKF93-K3Rm2HAdHtzgPIF6rWOCRogcR1P38?e=g5UvmY
+```
+<img width="1920" height="1080" alt="Screenshot (103)" src="https://github.com/user-attachments/assets/cc9dc8ca-3950-4834-ac25-eda54984e2ba" />
+
+
 ```
 
 ## Medical Profile
 
 ```
-https://1drv.ms/i/c/dd3143836538529d/IQCfKxKlGGWESIswvk8sz_V4AZbqLx-0spQDDPZNDUaMFDg?e=uzWb2g
+```
+<img width="1920" height="1080" alt="Screenshot (106)" src="https://github.com/user-attachments/assets/79dc0c11-ef4c-41de-935d-a16f9a997706" />
+
 ```
 
 ## AI Food Detection
 
 ```
-https://1drv.ms/i/c/dd3143836538529d/IQB92OqEAW6pRYsxYVJkthf4ASzf_9KwV4b9k7bGSiTebUw?e=BUDsiZ
+```
+<img width="1920" height="1080" alt="Screenshot (112)" src="https://github.com/user-attachments/assets/c3aed61f-5b63-40d6-bd80-d98d256fdde6" />
+
 ```
 
 ## Chatbot
 
 ```
-https://1drv.ms/i/c/dd3143836538529d/IQC892R4Tk1IT6C3xrXpqf2vAfvxfeaRJyxOeKURaOZCOAE?e=k3Eg1d
+
 ```
+<img width="1920" height="1080" alt="Screenshot (115)" src="https://github.com/user-attachments/assets/92b18e00-58b3-4bc1-b604-4e98d6473d2f" />
 
 ---
 
