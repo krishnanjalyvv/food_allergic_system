@@ -1,5 +1,3 @@
-<img width="1920" height="1080" alt="Screenshot (115)" src="https://github.com/user-attachments/assets/f9682918-a4af-49d9-ade8-1b6144b6774e" /><div align="center">
-
 # 🍽️ SafeBite
 ### AI Powered Food Allergic System
 
