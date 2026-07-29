@@ -229,20 +229,21 @@ GEMINI_API_KEY=YOUR_API_KEY
 <img width="1920" height="1080" alt="Screenshot (104)" src="https://github.com/user-attachments/assets/1f0a45bf-92c0-4df4-bf39-91383631a085" />
 
 ```
-
+```
 ## Registration Page
 
+```
 ```
 
 <img width="1920" height="1080" alt="Screenshot (103)" src="https://github.com/user-attachments/assets/cc9dc8ca-3950-4834-ac25-eda54984e2ba" />
 
 
 ```
-
+```
 ## Medical Profile
 
 ```
-```
+
 <img width="1920" height="1080" alt="Screenshot (106)" src="https://github.com/user-attachments/assets/79dc0c11-ef4c-41de-935d-a16f9a997706" />
 
 ```
@@ -254,7 +255,7 @@ GEMINI_API_KEY=YOUR_API_KEY
 <img width="1920" height="1080" alt="Screenshot (112)" src="https://github.com/user-attachments/assets/c3aed61f-5b63-40d6-bd80-d98d256fdde6" />
 
 ```
-
+```
 ## Chatbot
 
 ```
