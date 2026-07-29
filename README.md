@@ -233,7 +233,7 @@ GEMINI_API_KEY=YOUR_API_KEY
 ## Registration Page
 
 ```
-```
+
 <img width="1920" height="1080" alt="Screenshot (103)" src="https://github.com/user-attachments/assets/cc9dc8ca-3950-4834-ac25-eda54984e2ba" />
 
 
